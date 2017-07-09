@@ -96,25 +96,6 @@ private static final String LOGTAG = "WebClient";
 //              boolean useMostVisited = BrowserSettings.getInstance().useMostVisitedHomepage();
 //          String[] GS = GeneralPreferencesFragment.getInstance().mGoogleSites();
         String[] blockedSites = {
-        "internet.org",
-        "facebook.com",
-        "facebook.com.br",
-        "facebook.net",
-        "facebook.fr",
-        "facebook.de",
-        "facebook.dk",
-        "fb.com",
-        "m.me",
-        "fb.me",
-        "fbcdn.net",
-        "fbcdn.com",
-        "tfbnw.net",
-        "instagram.com",
-        "cdninstagram.com",
-        "messenger.com",
-        "whatsapp.com",
-        "momentsapp.com",
-        "edgekey.net",
         "edgesuite.net",
         "metrix.net",
         "fbfansite.com",
@@ -124,7 +105,6 @@ private static final String LOGTAG = "WebClient";
         "thefacebook.hu",
         "facebook.net.pk",
         "facebook.com.sv",
-        "facebook.eu",
         "socialgraph.fr",
         "fbsbx.com",
         "mywapblog.co",
@@ -153,7 +133,6 @@ private static final String LOGTAG = "WebClient";
         "admob.com",
         "adsense.com",
         "adwords.com",
-        "apis.google.com",
         "cobrasearch.com",
         "domains.google",
         "doubleclickbygoogle.com",
@@ -164,28 +143,13 @@ private static final String LOGTAG = "WebClient";
         "foofle.com",
         "froogle.com",
         "ggoogle.com",
-        "ggpht.com",
         "ghs.google.com",
         "gmodules.com",
         "gogle.com",
         "gogole.com",
         "googel.com",
         "googil.com",
-        "goo.gl",
         "googl.com",
-        "google",
-        "google.ac",
-        "google.ad",
-        "googleadservices.com",
-        "google.ae",
-        "google.al",
-        "google.am",
-        "google-analytics.com",
-        "googleanalytics.com",
-        "googleapis.com",
-        "googleapps.com",
-        "googlearth.com",
-        "googlebot.com",
                 "disqus.com",
                 "doubleclick.com",
                 "doubleclick.net",
@@ -5939,16 +5903,12 @@ private static final String LOGTAG = "WebClient";
                 // just do nothing
                 Log.v(LOGTAG, "Detected incognito or about or data:// app store etc");
                 }
-                else if (url.startsWith("https://")){
+                else if (url.startsWith("http://")){
                     if (isBlockedSite(url)) {
                     Uri uri2 = Uri.parse(url);
                     return new WebResourceResponse("text/plain", "utf-8", 
-                    new ByteArrayInputStream(("\n\n[secure URL was ad blocked \n" + uri2.getHost() + "]").getBytes()));
+                    new ByteArrayInputStream(("\n\n[URL was ad blocked \n" + uri2.getHost() + "]").getBytes()));
                     }
-                }else if (url.startsWith("http://")){
-                        Uri uri2 = Uri.parse(url);
-                        return new WebResourceResponse("text/plain", "utf-8", 
-                        new ByteArrayInputStream(("\n\n[insecure URL was blocked \n" + uri2.getHost() + "]").getBytes()));
                 }
 
             return super.shouldInterceptRequest(view, url);
