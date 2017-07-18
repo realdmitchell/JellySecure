@@ -119588,12 +119588,12 @@ private static final String LOGTAG = "WebClient";
                 // just do nothing
                 Log.v(LOGTAG, "Detected incognito or about or data:// app store etc");
                 }
-                else if (url.startsWith("https://") && isBlockedSite(url)){
+                else if ((url.startsWith("https://") && isBlockedSite(url))){
                           return new WebResourceResponse("text/plain", "utf-8", 
-                          new ByteArrayInputStream(("\n\n[ https URL was adblocked \n" + uri.getHost() + "]").getBytes()));
-                }else if url.startsWith("http://"){
+                          new ByteArrayInputStream(("[https URL blocked " + uri.getHost() + "]").getBytes()));
+                }else if (url.startsWith("http://")){
                           return new WebResourceResponse("text/plain", "utf-8", 
-                          new ByteArrayInputStream(("\n\n[ http blocked \n" + uri.getHost() + "]").getBytes()));
+                          new ByteArrayInputStream(("[http blocked " + uri.getHost() + "]").getBytes()));
                 }
             return super.shouldInterceptRequest(view, url);
         }
